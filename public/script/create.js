@@ -198,8 +198,7 @@ $(document).ready(function() {
   // Toggle color form when checkbox is changed
   $('#checkbox-color').change(toggleColor);
 
-  // Set the appropriate state when product type
-  // is selected.
+  // Set the appropriate state when a product type is selected.
   $('#product-form-type').change(event => {
     let type = event.target.value;
     updateProps(type);
@@ -231,9 +230,9 @@ $(document).ready(function() {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        // if (data.success == true) {
-        //   window.location.href = '/';
-        // }
+        if (data.success == true) {
+          window.location.href = '/';
+        }
       });
   });
 });

@@ -6,6 +6,7 @@ const productSchema = new Schema({
   imageURL: String,
   productType: String,
   colors: [SchemaTypes.Mixed],
+  created_at: Date,
 });
 
 const colorSchema = new Schema({

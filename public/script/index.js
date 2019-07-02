@@ -8,7 +8,7 @@ $(document).ready(function() {
       $('#products').html('');
       data.forEach((product, i) => {
         $('#products').append(`
-        <div class="card">
+        <div class="card my-2">
         <a href="/product.html?id=${product._id}">
           <img class="card-img-top" src="${
             product.imageURL

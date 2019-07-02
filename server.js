@@ -13,7 +13,7 @@ const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/cart';
 
 // Create express server
 const app = express();
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(cors());
@@ -31,13 +31,15 @@ const productRoutes = express.Router();
 app.use('/products', productRoutes);
 
 productRoutes.route('/').get((req, res) => {
-  Product.find((err, products) => {
-    if (err) {
-      res.status(400).send(err);
-    } else {
-      res.json(products);
-    }
-  });
+  Product.find({})
+    .sort([['created_at', -1]])
+    .exec((err, products) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.json(products);
+      }
+    });
 });
 
 productRoutes.route('/:id').get((req, res) => {
@@ -54,6 +56,7 @@ productRoutes.route('/add').post((req, res) => {
     productType: req.body.productType,
     imageURL: req.body.imageURL,
     colors: req.body.colors,
+    created_at: new Date(),
   });
   console.log(product);
   product

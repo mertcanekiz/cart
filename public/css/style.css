@@ -2,6 +2,24 @@ header {
     position: sticky;
 }
 
-main {
+main.container {
     max-width: 600px !important;
 }
+
+
+#floating-menu {
+    position: sticky;
+    z-index: 999;
+    box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.38);
+    height: 7rem;
+    width: 90vw;
+    margin: 0 auto;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    bottom: 5%;
+}
+
+#floating-menu img {
+    width: auto;
+    height: 7rem;
+  }

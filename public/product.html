@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css"> -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-colorpicker.min.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700">
@@ -19,8 +19,8 @@
 </head>
 
 <body>
-    <header class="site-header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <header class="site-header" style="position:sticky; top:0; z-index: 999;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
             <a class="navbar-brand" href="/">Cart</a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -38,33 +38,63 @@
             </div>
           </nav>
     </header>
-    <main role="main" class="container pt-3">
+    <main role="main" class="container-fluid" style="max-width: 100% !important">
         <div id="product">
-            <div class="card">
-                <img class="card-img-top" src="https://placeholder.pics/svg/375" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">${product.title}</h5>
-                  <p class="card-text">${product.description}</p>
-                  <a href="/product.html?id=${
-                    product._id
-                  }" class="btn btn-primary">$${product.price}</a>
-            <button class="btn btn-danger" id="delete-btn">Delete</button>
-                </div>
+            <div class="row">
+              <div class="col-sm px-0" id="product-image">
+                <img class="product-image w-100" src="" alt="">
               </div>
+              <div class="col-sm container p-3" id="product-description">
+                <h1 class="product-title">Product title</h1>
+                <p class="product-description" class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio vel molestias perferendis id fuga iure molestiae. Fugiat dolorem laborum pariatur fuga amet natus porro harum tempore. Mollitia pariatur obcaecati vitae, quod dolores ab error suscipit corrupti itaque necessitatibus quisquam, facere accusantium deleniti nostrum esse. Voluptatibus neque sit consectetur nesciunt.</p>
+              </div>
+            </div>
         </div>
     </main>
+    <nav id="floating-menu" class="navbar navbar-light bg-white p-0">
+      <div class="row w-100 p-0">
+        <div class="col-3 col-md-2 my-auto p-0 d-none d-md-block col-lg-1">
+            <img  alt="" src=""
+                class="floating-menu-img product-image">
+    
+        </div>
+        <div class="col-md-2 col-lg-1 d-none d-md-block my-auto" id="product-title">
+            <strong class="product-title">Title</strong>
+        </div>
+        <div class="col-9 col-md-1 col-lg-1 my-auto p-0 d-none d-md-block">
+            <div class="shop-item-details">
+                <span class="product-price">$12.99</span>
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-5 d-none d-md-block my-auto" >
+            <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+            </button>
+        </div>
+        <div class="col-6 col-md-2 col-lg-2 my-auto p-md-0">
+            <span class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn" type="button" id="minusButton">-</button>
+                </div>
+                <input type="text" class="form-control no-padding add-color text-center height-25" maxlength="3" value="1"
+                    id="counter">
+                <div class="input-group-btn">
+                    <button class="btn mr-1" type="button" id="plusButton">+</button>
+                </div>
+            </span>
+        </div>
+    
+        <div class="col-6 col-md-3 col-lg-2 my-auto p-0  pr-md-3">
+            <button class="btn btn-block btn-primary add-to-cart p-3 mr-0" type="button" id="addToCartBtn">Add to cart</button>
+        </div>
+    </div>
+    </nav>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="script/bootstrap-colorpicker.min.js"></script>
     <script type="text/javascript" src="script/script.js"></script>
     <script type="text/javascript" src="script/product.js"></script>
 

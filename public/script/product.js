@@ -20,21 +20,11 @@ $(document).ready(function() {
   fetch(`/products/${id}`)
     .then(response => response.json())
     .then(product => {
-      $('#product').html(`
-        <div class="card">
-          <img class="card-img-top" src="${
-            product.imageURL
-          }" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">${product.title}</h5>
-            <p class="card-text">${product.description}</p>
-            <a href="/product.html?id=${
-              product._id
-            }" class="btn btn-primary">$${product.price}</a>
-      <button class="btn btn-danger" id="delete-btn">Delete</button>
-          </div>
-        </div>
-        `);
+      $('.product-title').html(product.title);
+      $('.product-image').attr('src', product.imageURL);
+      $('.product-price').html(product.price);
+      $('.product-description').html(product.description);
+      console.log(product);
       $('#delete-btn').click(function() {
         fetch(`/products/delete/${product._id}`, {
           method: 'post',
