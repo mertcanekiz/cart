@@ -1,0 +1,7 @@
+header {
+    position: sticky;
+}
+
+main {
+    max-width: 600px !important;
+}

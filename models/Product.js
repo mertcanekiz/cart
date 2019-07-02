@@ -1,0 +1,20 @@
+import mongoose, { Schema, SchemaTypes, mongo } from 'mongoose';
+
+const productSchema = new Schema({
+  title: String,
+  description: String,
+  imageURL: String,
+  productType: String,
+  colors: [SchemaTypes.Mixed],
+});
+
+const colorSchema = new Schema({
+  rgb: String,
+  name: String,
+  price: Number,
+});
+
+const Product = mongoose.model('Product', productSchema);
+
+export default Product;
+export const Color = mongoose.model('Color', colorSchema);

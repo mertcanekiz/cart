@@ -1,0 +1,19 @@
+{
+    "name": "cart",
+    "version": 2,
+    "builds": [
+        {
+            "src": "server.js", "use": "@now/node-server"
+        },
+        {
+            "src": "public/**/*", "use": "@now/static"
+        }
+    ],
+    "env": {
+        "MONGO_URL": "@mongo_uri"
+    },
+    "routes": [
+        { "src": "/products.*", "dest": "server.js" },
+        { "src": "/(.*)", "dest": "public/$1" }
+    ]
+}
