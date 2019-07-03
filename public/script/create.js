@@ -10,6 +10,7 @@ const PRODUCT_TYPES = {
 };
 
 let colorCount = 0;
+let sizeCount = 0;
 let encodedImage = '';
 
 async function getBase64(file) {
@@ -98,22 +99,23 @@ function updateProps(type) {
   $('#product-form-properties').html('');
   // Remove the colors
   removeColors();
-  // Add new checkboxes for that product type
-  for (property of PRODUCT_TYPES[type].properties) {
-    $('#product-form-properties').append(
-      `<div class="form-check">
-          <input class="form-check-input" type="checkbox" value="${property}" id="checkbox-${property}">
-          <label class="form-check-label" for="checkbox-${property}">${property.toUpperCase()}</label>
-        </div>
-        `
-    );
+  if(type==="generic"){
+    toggleAddColorButton(true);
+    toggleAddSizeButton(true);
   }
-}
+  else if(type==="flight"){
+    toggleAddColorButton(false);
+    toggleAddSizeButton(false);
 
-function addColor(id) {
-  if (colorCount == 0) {
-    $('#colors').html('Colors');
   }
+  
+}
+function addSize (id) {
+  $('#sizes').append(sizeForm(id));
+  sizeCount++;
+  toggleAddSizeButton(false);
+}
+function addColor(id) {
   $('#colors').append(colorForm(id));
   $(`#${id}`).colorpicker();
   $(`#${id}`).css('background-color', `rgb(255, 128, 0)`);
@@ -125,6 +127,7 @@ function addColor(id) {
   $(`#${id}-add-size`).click(() => addSize(id));
   $(`#${id}-remove-color`).click(() => removeColor(id));
   colorCount++;
+  toggleAddSizeButton(false);
 }
 
 function removeColors() {
@@ -133,6 +136,7 @@ function removeColors() {
   colors.remove();
   colorCount = 0;
   $('#colors').html('');
+  toggleAddSizeButton(true);
 }
 
 function removeColor(id) {
@@ -141,9 +145,7 @@ function removeColor(id) {
   color.remove();
   colorCount -= 1;
   if (colorCount == 0) {
-    toggleAddColorButton(false);
-    $('#colors').html('');
-    $('#checkbox-color').prop('checked', false);
+    toggleAddSizeButton(true);
   }
 }
 
@@ -175,9 +177,12 @@ function toggleAddColorButton(visible) {
     $('#add-new-color').addClass('d-none');
   }
 }
-
-function addSize(id) {
-  $(`#${id}-sizes`).html(sizeForm(id));
+function toggleAddSizeButton(visible) {
+  if (visible) {
+    $('#add-new-size').removeClass('d-none');
+  } else {
+    $('#add-new-size').addClass('d-none');
+  }
 }
 
 function toggleColor() {
@@ -205,9 +210,17 @@ $(document).ready(function() {
     $('#checkbox-color').change(toggleColor);
   });
 
+  toggleAddColorButton(true);
+
+
   // Add new color
   $('#add-new-color').click(event => {
     addColor(`color-${colorCount}`);
+  });
+
+  //Add new size
+  $('#add-new-size').click(event => {
+    addSize(`size-${sizeCount}`);
   });
 
   $('#product-form-image').change(function(event) {

@@ -23,3 +23,7 @@ main.container {
     width: auto;
     height: 7rem;
   }
+
+  #product-form-image{
+      height: auto;
+  }

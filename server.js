@@ -8,7 +8,7 @@ import uuidv1 from 'uuid/v1';
 import Product, { Color } from './models/Product';
 
 // Definitions
-const PORT = 8080;
+const PORT = 4000;
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/cart';
 
 // Create express server
