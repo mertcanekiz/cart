@@ -9,6 +9,12 @@ const PRODUCT_TYPES = {
   },
 };
 
+const SIZE_TYPE = {
+  clothes:[30,32,34,36,38,40,42,44,46,48,50],
+  shoes:[30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]
+
+}
+
 let colorCount = 0;
 let sizeCount = 0;
 let encodedImage = '';
@@ -85,14 +91,18 @@ function colorForm(id) {
 function sizeForm(id) {
   return `
     <div class="form-group form-inline" id=size-${id}-group">
-      <select class="form-control">
+      <select class="form-control" id="size-${id}-select">
         <option value="clothes">Clothes</option>
         <option value="shoes">Shoes</option>
         <option value="custom">Custom</option>
       </select>
+      <select id="size-${id}-options">
+      </select>
     </div>
   `;
 }
+
+
 
 function updateProps(type) {
   // Remove the checkboxes
@@ -114,6 +124,15 @@ function addSize (id) {
   $('#sizes').append(sizeForm(id));
   sizeCount++;
   toggleAddSizeButton(false);
+  $(`#size-${id}-select`).change(event => {
+    $(`#size-${id}-options`).html("")
+    let type = event.target.value;
+    for (let value of SIZE_TYPE[type])  {
+      $(`#size-${id}-options`).append(`
+        <option value=${value}>${value}</option>
+      `)
+    }
+  });
 }
 function addColor(id) {
   $('#colors').append(colorForm(id));
